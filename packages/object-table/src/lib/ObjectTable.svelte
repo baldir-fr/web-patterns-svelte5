@@ -4,6 +4,8 @@ This component take any javascript object and tries to render it as a human read
 -->
 <script lang="ts">
     /* eslint-disable @typescript-eslint/no-explicit-any */
+    // We don't key values in {#each} because we cannot predict if there will be keys duplicates
+    /* eslint svelte/require-each-key: "off" */
 
     import ObjectTable from "./ObjectTable.svelte";
 
@@ -189,7 +191,8 @@ This component take any javascript object and tries to render it as a human read
 
 {#snippet list(items: any, summarizeInner: any)}
     <ul>
-        {#each items as item (item)}
+
+        {#each items as item}
             <li>
                 <ObjectTable data={item} summarize={summarizeInner}/>
             </li>
@@ -202,15 +205,15 @@ This component take any javascript object and tries to render it as a human read
     <table class="object-table-table">
         <thead>
         <tr>
-            {#each headers as header (header)}
+            {#each headers as header }
                 <th>{header}</th>
             {/each}
         </tr>
         </thead>
         <tbody>
-        {#each rows as row (row)}
+        {#each rows as row }
             <tr>
-                {#each headers as header (header)}
+                {#each headers as header}
                     <td>
                         <ObjectTable data={row[header]} summarize={summarizeInner}/>
                     </td>
