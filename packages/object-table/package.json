@@ -1,7 +1,7 @@
 {
   "name": "svelte-object-table",
   "description": "A svelte component to render unknown data as table (mostly)",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "author": {
     "url": "https://marc-bouvier.fr",
     "name": "Marc Bouvier"
@@ -27,7 +27,8 @@
     "!dist/**/*.spec.*"
   ],
   "sideEffects": [
-    "**/*.css"
+    "**/*.css",
+    "!src/lib/object-table.css"
   ],
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -36,7 +37,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js"
-    }
+    },
+    "./object-table.css": "./dist/object-table.css"
   },
   "peerDependencies": {
     "svelte": "^5.0.0"

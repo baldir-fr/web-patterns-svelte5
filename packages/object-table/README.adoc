@@ -2,6 +2,27 @@
 
 Render any object as a human readable table.
 
+== Installation
+
+[source,sh]
+----
+npm install svelte-object-table
+----
+
+Usage :
+
+[source,html]
+----
+<script lang="ts">
+import {ObjectTable} from "svelte-object-table";
+import  "svelte-object-table/object-table.css";
+// You can also use your own CSS (every css class is global)
+</script>
+
+<ObjectTable data={{"foo":"bar","baz":"moo"}}></ObjectTable>
+
+----
+
 == Purpose
 
 Quick visualization of data which structure is unknown.
@@ -14,6 +35,26 @@ Quick visualization of data which structure is unknown.
 - Approval testing (snapshot)
 - Design system documentation (Storybook)
 - Eslint but no Prettier
+
+=== Publish component library
+
+Content in `src/lib` is published.
+
+It publishes files in `dist` folder.
+
+To simulate publication to npm :
+
+[source,sh]
+----
+npm publish --dry-run
+----
+
+To actually publish :
+
+[source,sh]
+----
+npm publish --dry-run
+----
 
 === Embrace the cascade
 
@@ -34,18 +75,18 @@ include::src/lib/ObjectTable.svelte[tag=global-style-in-svelte-component]
 
 Style can be then implemented is a plain css file.
 
-link:static/style.css[]
+link:src/lib/object-table.css[]
 
 [source,css]
 ----
-include::static/style.css[tag=classic-css-style]
+include::src/lib/object-table.css[tag=classic-css-style]
 ----
 
-And imported in the link:src/app.html[]
+And imported in the link:src/routes/+page.svelte[]
 
 [source,html]
 ----
-include::src/app.html[tag=css-classic-stylesheet]
+include::src/routes/+page.svelte[tag=svelte-import-css]
 ----
 
 
