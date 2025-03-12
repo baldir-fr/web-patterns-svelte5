@@ -1,7 +1,12 @@
 {
-  "name": "object-table",
+  "name": "svelte-object-table",
   "description": "A svelte component to render unknown data as table (mostly)",
   "version": "0.0.1",
+  "author": {
+    "url": "https://marc-bouvier.fr",
+    "name": "Marc Bouvier"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run prepack",
