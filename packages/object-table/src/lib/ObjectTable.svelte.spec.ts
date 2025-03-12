@@ -69,8 +69,9 @@ describe('ObjectTable', () => {
                 }
             })
 
-            expect(getByRole("img")).toMatchInlineSnapshot(`
+            expect(getByRole("presentation")).toMatchInlineSnapshot(`
               <img
+                alt=""
                 src="https://foo.bar.jpg"
               />
             `)
@@ -132,6 +133,7 @@ describe('ObjectTable', () => {
         });
     });
     describe('with flat object', () => {
+        // tag::global-style-rendered[]
         it('renders as table with attributes as headers', () => {
             const {getByRole} = render(ObjectTable, {props: {data: {foo: "bar"}}})
             const table = getByRole("table")
@@ -164,6 +166,7 @@ describe('ObjectTable', () => {
               </table>
             `)
         });
+        // end::global-style-rendered[]
     });
 
     describe('with nested object', () => {

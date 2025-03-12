@@ -369,7 +369,7 @@
 }}/>
 
 <Story name="Summarize inner values" args={{
-    data: complexObject,
+    data: {foo:"bar",baz:["a","b","c"]},
     summarizeInner:true
 }}/>
 

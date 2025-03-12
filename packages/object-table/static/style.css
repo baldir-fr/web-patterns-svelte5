@@ -1,0 +1,26 @@
+/* tag::classic-css-style[] */
+
+/* ObjectTable */
+
+table.object-table-table,
+.object-table-table td,
+.object-table-table th {
+    border: lightslategrey solid;
+}
+
+table.object-table-table {
+    border-collapse: collapse;
+}
+
+.object-table-table td {
+    min-width: 12rem;
+    padding: 1rem;
+    overflow-wrap: break-word;
+    overflow-x: auto;
+}
+
+.object-table-table th {
+    padding: 1rem;
+}
+
+/* end::classic-css-style[] */

@@ -1,126 +1,175 @@
+<!--
+@component
+This component take any javascript object and tries to render it as a human readable representation.
+-->
 <script lang="ts">
-    import ObjectTable from "./ObjectTable.svelte"
 
-    const {data, summarize, summarizeInner} = $props()
+    /* eslint-disable @typescript-eslint/no-explicit-any */
 
-    let typeOfData = $derived(Object.prototype.toString.call(data))
-    let isArray = $derived(typeOfData === "[object Array]")
+    import ObjectTable from "./ObjectTable.svelte";
 
-    let isString = $derived(typeOfData === "[object String]")
-    let isNumber = $derived(typeOfData === "[object Number]")
-    let isHttpUrl = $derived(isString && _isHttpUrl(data))
-    let isPicture = $derived(isString && _isPicture(data))
+    interface Props {
+        /**
+         * Javascript value to be rendered.
+         *
+         * Note : the use of `any` type is intentional in this component
+         * since it accepts any javascript object as data **/
+        data: any;
+        /**
+         * Summarizes any rendered value that can take a considerable amount of screen space.
+         * It summarizes :
+         * - Tables
+         * - Lists
+         */
+        summarize?: boolean;
+        /**
+         * Summarizes inner values.
+         *
+         * Ex.
+         *
+         * ```html
+         * <ObjectTable
+         *     data={foo:"bar",baz:["a","b","c"]},
+         *     summarizeInner
+         *     />
+         * ```
+         * Will render something like :
+         * ```html
+         * <table>
+         * <thead>
+         *     <tr>
+         *         <th>foo</th>
+         *         <th>baz</th>
+         *     </tr>
+         * </thead>
+         * <tbody>
+         *     <tr>
+         *         <td><span>bar</span></td>
+         *         <td>
+         *             <details><summary>a, b, c</summary>
+         *             <ul>
+         *                 <li><span>a</span></li>
+         *                 <li><span >b</span></li>
+         *                 <li><span >c</span></li>
+         *             </ul>
+         *             </details>
+         *             </td>
+         *     </tr>
+         * </tbody>
+         * </table>
+         * ```
+         */
+        summarizeInner?: boolean;
+    }
+
+    const {data, summarize = false, summarizeInner = false}: Props = $props();
 
     const _isHttpUrl = (url: string) => {
         try {
             const parsedUrl = new URL(url);
             return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
-        } catch (_) {
+        }
+            // We don't care of the error, error means this is not an URL
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        catch (_) {
             return false;
         }
-    }
-    const _isPicture = (url: string) => url.endsWith(".jpg")
-    let isObject = $derived(typeOfData === "[object Object]")
-    let isNullish = $derived(typeOfData === "[object Undefined]" || typeOfData === "[object Null]")
-    let isEmptyObject = $derived(typeOfData === "[object Object]" && JSON.stringify(data) === "{}")
+    };
+    const _isPicture = (url: string) => url.endsWith(".jpg");
+    let typeOfData = $derived(Object.prototype.toString.call(data));
+    let isObject = $derived(typeOfData === "[object Object]");
+    let isNullish = $derived(
+        typeOfData === "[object Undefined]" || typeOfData === "[object Null]"
+    );
+    let isEmptyObject = $derived(
+        typeOfData === "[object Object]" && JSON.stringify(data) === "{}"
+    );
 
 
-    function sameMembers(arr1, arr2) {
+    let isArray = $derived(typeOfData === "[object Array]");
+
+    let isString = $derived(typeOfData === "[object String]");
+    let isNumber = $derived(typeOfData === "[object Number]");
+    let isHttpUrl = $derived(isString && _isHttpUrl(data));
+    let isPicture = $derived(isString && _isPicture(data));
+
+    // eslint-disable @typescript-eslint/no-explicit-any
+    function sameMembers(arr1: Array<any>, arr2: Array<any>) {
         const set1 = new Set(arr1);
         const set2 = new Set(arr2);
-        return arr1.every(item => set2.has(item)) &&
-            arr2.every(item => set1.has(item))
+        return (
+            arr1.every((item) => set2.has(item)) &&
+            arr2.every((item) => set1.has(item))
+        );
     }
 
-    const _isArrayOfSameObjects = (anArray: Array<unknown>): boolean => {
-
+    const _isArrayOfSameObjects = (anArray: Array<any>): boolean => {
         const dataType = Object.prototype.toString.call(anArray);
         if (dataType !== "[object Array]") {
-            return false
+            return false;
         }
         if (anArray.length === 0) {
-            return false
+            return false;
         }
-        const every_array_value_is_an_object = anArray.every(value => Object.prototype.toString.call(value) === "[object Object]");
+        const every_array_value_is_an_object = anArray.every(
+            (value) => Object.prototype.toString.call(value) === "[object Object]"
+        );
         if (!every_array_value_is_an_object) {
             return false;
         }
-        const first_array_value_keys = Object.keys(anArray[0])
-        const every_array_value_has_the_same_keys = anArray.every(value => sameMembers(first_array_value_keys, Object.keys(value)))
+        const first_array_value_keys = Object.keys(anArray[0]);
+        const every_array_value_has_the_same_keys = anArray.every((value) =>
+            sameMembers(first_array_value_keys, Object.keys(value))
+        );
         return every_array_value_has_the_same_keys;
+    };
 
-    }
+    let isArrayOfSameObjects = $derived(_isArrayOfSameObjects(data));
 
-    let isArrayOfSameObjects = $derived(_isArrayOfSameObjects(data))
-
-    const deriveHeaders = (someData) => {
+    const deriveHeaders = (someData: any) => {
         if (someData === undefined) {
-            return []
+            return [];
         }
         if (isObject) {
-            return Object.keys(someData)
+            return Object.keys(someData);
         }
         if (isArrayOfSameObjects) {
-            return Object.keys(someData[0])
+            return Object.keys(someData[0]);
         }
-        return []
-    }
+        return [];
+    };
 
     const summarizeList = (items: string[]) => {
         const joinedItems = items.join(", ");
         const maxLength = 100;
         if (joinedItems.length <= maxLength) {
-            return joinedItems
+            return joinedItems;
         }
         return joinedItems.slice(0, maxLength) + "…";
-    }
+    };
 
-    const deriveRows = (someData) => {
+    const deriveRows = (someData: any) => {
         if (someData === undefined) {
-            return []
+            return [];
         }
         if (isObject) {
-            return [someData]
+            return [someData];
         }
         if (isArrayOfSameObjects) {
-            console.log("deriveRows.isArrayOfSameObjects")
-            return someData
+            console.log("deriveRows.isArrayOfSameObjects");
+            return someData;
         }
-        return []
-    }
+        return [];
+    };
 
-    let headers = $derived(deriveHeaders(data))
-    let rows = $derived(deriveRows(data))
-
-    // $inspect("data : " + JSON.stringify(data))
-    // $inspect("isString : " + isString + ", isObject : " + isObject + ", isArray : " + isArray + ", isArrayOfSameObjects : " + isArrayOfSameObjects + ", isEmptyObject: " + isEmptyObject + ", isNullish : " + isNullish)
-    // $inspect("rows : " + JSON.stringify(rows))
-    // $inspect("headers : " + JSON.stringify(headers))
-    // $inspect("isArrayOfSameObjects : " + isArrayOfSameObjects)
-
-    // const headers: Array<string> = ["a", "b", "c"]
-    // const rows: Array<Record<string, unknown>> = [
-    //     {
-    //         "a": "foo",
-    //         "b": "bar"
-    //     },
-    //     {
-    //         "b": "bar bar",
-    //         "a": "foo foo",
-    //     },
-    // ]
-
-
+    let headers = $derived(deriveHeaders(data));
+    let rows = $derived(deriveRows(data));
 </script>
 
 {#if isPicture}{@render picture(data)}
-
 {:else if isHttpUrl}{@render link(data)}
-
 {:else if isString || isNumber}{@render string(data)}
-
 {:else if isNullish || isEmptyObject}{@render empty()}
-
 {:else if isArray && !isArrayOfSameObjects}
     {#if summarize}
         <details>
@@ -134,36 +183,38 @@
     {#if summarize}
         <details>
             <summary>{summarizeList(headers)}</summary>
-            {@render table(data, summarizeInner)}
+            {@render table(headers, rows, summarizeInner)}
         </details>
     {:else}
-        {@render table(data, summarizeInner)}
+        {@render table(headers, rows, summarizeInner)}
     {/if}
 {/if}
 
-{#snippet list(data, summarizeInner)}
+{#snippet
+    list(items, summarizeInner)}
     <ul>
-        {#each data as stringValue}
+        {#each items as item (item)}
             <li>
-                <ObjectTable data={stringValue} summarize={summarizeInner}/>
+                <ObjectTable data={item} summarize={summarizeInner}/>
             </li>
         {/each}
     </ul>
 {/snippet}
 
-{#snippet table(data, summarizeInner)}
+<!-- tag::global-style-in-svelte-component[] -->
+{#snippet table(headers, rows, summarizeInner)}
     <table class="object-table-table">
         <thead>
         <tr>
-            {#each headers as header}
+            {#each headers as header (header)}
                 <th>{header}</th>
             {/each}
         </tr>
         </thead>
         <tbody>
-        {#each rows as row}
+        {#each rows as row (row)}
             <tr>
-                {#each headers as header}
+                {#each headers as header (header)}
                     <td>
                         <ObjectTable data={row[header]} summarize={summarizeInner}/>
                     </td>
@@ -173,43 +224,22 @@
         </tbody>
     </table>
 {/snippet}
+<!-- end::global-style-in-svelte-component[] -->
 
-{#snippet picture(data)}
-    <img src={data}/>
+{#snippet picture(url)}
+    <img alt="" src={url}/>
 {/snippet}
 
-{#snippet link(data)}
-    <a href={data}>{data}</a>
+{#snippet link(url)}
+    <a href={url}>{url}</a>
 {/snippet}
 
-{#snippet string(data)}
-    <span>{data}</span>
+{#snippet string(text)}
+    <span>{text}</span>
 {/snippet}
 
 {#snippet empty()}<span></span>{/snippet}
 
-
 <style>
-    /* Global style to embrace the cascade. */
-    :global {
-        .object-table-table table, .object-table-table td, .object-table-table th {
-            border: lightslategrey solid;
-        }
 
-        table.object-table-table {
-            border-collapse: collapse;
-        }
-
-        .object-table-table td {
-            min-width: 12rem;
-            padding: 1rem;
-            overflow-wrap: break-word;
-            overflow-x: auto;
-        }
-
-        .object-table-table th {
-
-            padding: 1rem;
-        }
-    }
 </style>
