@@ -1,7 +1,7 @@
 {
   "name": "svelte-object-table",
   "description": "A svelte component to render unknown data as table (mostly)",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "url": "https://marc-bouvier.fr",
     "name": "Marc Bouvier"
