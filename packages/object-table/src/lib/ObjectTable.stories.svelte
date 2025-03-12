@@ -1,4 +1,5 @@
-<script module lang="ts">
+<script module lang="js">
+
     import {defineMeta, setTemplate} from '@storybook/addon-svelte-csf';
     import ObjectTable from "$lib/ObjectTable.svelte";
 
@@ -332,12 +333,12 @@
 
 </script>
 
-<script lang="ts">
+<script lang="js">
     setTemplate(template);
 </script>
 
 {#snippet template({...args})}
-    <ObjectTable {...args}/>
+    <ObjectTable {...args} data={args.data} />
 {/snippet}
 
 <Story name="Empty"/>

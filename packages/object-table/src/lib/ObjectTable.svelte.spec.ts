@@ -1,6 +1,7 @@
 import {describe, expect, it} from "vitest";
 import {render} from "@testing-library/svelte";
 import ObjectTable from "$lib/ObjectTable.svelte";
+import '@testing-library/jest-dom/vitest';
 
 describe('ObjectTable', () => {
 
@@ -14,8 +15,7 @@ describe('ObjectTable', () => {
                     data
                 }
             })
-
-            expect(container).not.toHaveTextContent()
+            expect(container.textContent).toBe("")
         })
     })
     describe('with string literal', () => {
@@ -36,6 +36,7 @@ describe('ObjectTable', () => {
             })
 
             const result = getByText(`<img src="foo.png" />`)
+
             expect(result).toMatchInlineSnapshot(`
               <span>
                 &lt;img src="foo.png" /&gt;

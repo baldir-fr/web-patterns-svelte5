@@ -1,6 +1,6 @@
-import { svelteTesting } from "@testing-library/svelte/vite";
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import {svelteTesting} from "@testing-library/svelte/vite";
+import {sveltekit} from '@sveltejs/kit/vite';
+import {defineConfig} from 'vite';
 
 export default defineConfig({
     plugins: [sveltekit()],
@@ -17,7 +17,6 @@ export default defineConfig({
                 include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
                 exclude: ['src/lib/server/**'],
                 setupFiles: ['./vitest-setup-client.ts'],
-                alias: [{ find: '@testing-library/svelte', replacement: '@testing-library/svelte/svelte5' }]
 
             }
         }, {

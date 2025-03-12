@@ -3,7 +3,6 @@
 This component take any javascript object and tries to render it as a human readable representation.
 -->
 <script lang="ts">
-
     /* eslint-disable @typescript-eslint/no-explicit-any */
 
     import ObjectTable from "./ObjectTable.svelte";
@@ -68,10 +67,9 @@ This component take any javascript object and tries to render it as a human read
         try {
             const parsedUrl = new URL(url);
             return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
-        }
             // We don't care of the error, error means this is not an URL
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        catch (_) {
+        } catch (_) {
             return false;
         }
     };
@@ -84,7 +82,6 @@ This component take any javascript object and tries to render it as a human read
     let isEmptyObject = $derived(
         typeOfData === "[object Object]" && JSON.stringify(data) === "{}"
     );
-
 
     let isArray = $derived(typeOfData === "[object Array]");
 
@@ -190,8 +187,7 @@ This component take any javascript object and tries to render it as a human read
     {/if}
 {/if}
 
-{#snippet
-    list(items, summarizeInner)}
+{#snippet list(items: any, summarizeInner: any)}
     <ul>
         {#each items as item (item)}
             <li>
@@ -202,7 +198,7 @@ This component take any javascript object and tries to render it as a human read
 {/snippet}
 
 <!-- tag::global-style-in-svelte-component[] -->
-{#snippet table(headers, rows, summarizeInner)}
+{#snippet table(headers: any, rows: any, summarizeInner: any)}
     <table class="object-table-table">
         <thead>
         <tr>
@@ -226,20 +222,19 @@ This component take any javascript object and tries to render it as a human read
 {/snippet}
 <!-- end::global-style-in-svelte-component[] -->
 
-{#snippet picture(url)}
+{#snippet picture(url: any)}
     <img alt="" src={url}/>
 {/snippet}
 
-{#snippet link(url)}
+{#snippet link(url: any)}
     <a href={url}>{url}</a>
 {/snippet}
 
-{#snippet string(text)}
+{#snippet string(text: any)}
     <span>{text}</span>
 {/snippet}
 
 {#snippet empty()}<span></span>{/snippet}
 
 <style>
-
 </style>
