@@ -6,7 +6,7 @@ Full demo
 ## Patterns
 
 - Npm workspaces : [package.json](package.json)
-- [Publish component library](packages/object-table/README.md)
+- [Publish component library](packages/object-table/README.adoc)
 
 ## TODO
 
