@@ -155,7 +155,6 @@ This component take any javascript object and tries to render it as a human read
             return [someData];
         }
         if (isArrayOfSameObjects) {
-            console.log("deriveRows.isArrayOfSameObjects");
             return someData;
         }
         return [];
