@@ -48,11 +48,8 @@ include::docs/object-table/object-table.adoc[leveloffset=+2]
 
 <<<
 
+[appendix]
 == Nodejs ecosystem
 
 include::docs/nvm.adoc[leveloffset=+2]
 include::docs/npm-workspaces.adoc[leveloffset=+2]
-
-
-
-
