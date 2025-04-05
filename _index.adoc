@@ -28,17 +28,17 @@
 :partnums:
 // End === Table of Contents configuration
 
-<<<
+== Patterns
 
-include::docs/living-documentation.adoc[leveloffset=+1]
+Component Library:: publish components as npm package to reuse them in other projects.
 
-include::docs/mermaid-diagram.adoc[leveloffset=+2]
+Finite State Machine:: model complicated flows and keep track of state.
 
-include::docs/approval-testing.adoc[leveloffset=+2]
+Internationalization (i18n):: allow your site to support multiple languages and locales.
 
-<<<
+Validation:: check if user input is correct and provide errors informations.
 
-include::docs/finite-state-machine.adoc[leveloffset=+1]
+Webhook:: listen events from outside sources.
 
 <<<
 
@@ -48,8 +48,21 @@ include::docs/object-table/object-table.adoc[leveloffset=+2]
 
 <<<
 
+include::docs/finite-state-machine.adoc[leveloffset=+1]
+
+<<<
+
 [appendix]
 == Nodejs ecosystem
 
 include::docs/nvm.adoc[leveloffset=+2]
 include::docs/npm-workspaces.adoc[leveloffset=+2]
+
+<<<
+
+[appendix]
+include::docs/living-documentation.adoc[leveloffset=+1]
+
+include::docs/mermaid-diagram.adoc[leveloffset=+2]
+
+include::docs/approval-testing.adoc[leveloffset=+2]
