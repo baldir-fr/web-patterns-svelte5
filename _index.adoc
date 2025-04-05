@@ -26,12 +26,13 @@
 :partnums:
 // End === Table of Contents configuration
 
-
 include::docs/living-documentation.adoc[leveloffset=+1]
 
 include::docs/mermaid-diagram.adoc[leveloffset=+2]
 
 include::docs/approval-testing.adoc[leveloffset=+2]
+
+include::docs/finite-state-machine.adoc[leveloffset=+1]
 
 == Component library
 

@@ -2,8 +2,13 @@
 
 Example of a finite state machine for a signup workflow as a link:mermaid-diagram.adoc[Mermaid diagram].
 
+[source,@mermaid]
+----
+include::{examplesdir}/ts-fsm-demo/docs/diagrams/signup-fsm.approved.mermaid[]
+----
 
 [mermaid]
 ----
 include::{examplesdir}/ts-fsm-demo/docs/diagrams/signup-fsm.approved.mermaid[]
 ----
+
