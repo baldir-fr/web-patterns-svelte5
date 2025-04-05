@@ -8,8 +8,6 @@ Documentation
 
 - [Full demo](packages/full-demo/README.md)
 - [Component lib with design system](packages/object-table/README.adoc)
-- [Full demo](packages/full-demo/README.md)
-- [Full demo](packages/full-demo/README.md)
 
 ## Patterns
 
