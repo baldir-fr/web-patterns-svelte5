@@ -53,6 +53,8 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Generate static HTML with Asciidoctor
         run: ${{ steps.detect-package-manager.outputs.manager }} run docs
+      - name: Generate Pdf with Asciidoctor
+        run: ${{ steps.detect-package-manager.outputs.manager }} run docs:pdf
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
