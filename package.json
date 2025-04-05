@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test:all",
-    "test:all": "npm test --workspaces"
+    "test:all": "npm test --workspaces",
+    "dev:full-demo": "npm run dev --workspace=full-demo"
   },
   "workspaces": {
     "packages": [
