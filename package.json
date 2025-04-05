@@ -10,7 +10,7 @@
     "test": "npm run test:all",
     "test:all": "npm test --workspaces",
     "dev:full-demo": "npm run dev --workspace=full-demo",
-    "docs": "asciidoctor --destination-dir public  --out-file=index.html  -a examplesdir=$PWD/packages _index.adoc",
+    "docs": "asciidoctor --destination-dir public  --out-file=index.html  -a examplesdir=$PWD/packages -a toc=auto _index.adoc",
     "docs:pdf": "asciidoctor-web-pdf --destination-dir public  --out-file=web-patterns-svelte5.pdf  -a examplesdir=$PWD/packages _index.adoc"
   },
   "workspaces": {
