@@ -10,8 +10,8 @@
     "test": "npm run test:all",
     "test:all": "npm test --workspaces",
     "dev:full-demo": "npm run dev --workspace=full-demo",
-    "docs": "asciidoctor -r asciidoctor-kroki --destination-dir public  --out-file=index.html  -a examplesdir=$PWD/packages -a toc=auto _index.adoc",
-    "docs:pdf": "asciidoctor-web-pdf -r asciidoctor-kroki --destination-dir public  --out-file=web-patterns-svelte5.pdf  -a examplesdir=$PWD/packages _index.adoc; rm web-patterns-svelte5.html "
+    "docs": "asciidoctor -r asciidoctor-kroki --destination-dir public  --out-file=index.html  -a examplesdir=$PWD/packages -a toc=auto -a source-highlighter=highlight.js _index.adoc",
+    "docs:pdf": "asciidoctor-web-pdf -r asciidoctor-kroki --destination-dir public  --out-file=web-patterns-svelte5.pdf  -a examplesdir=$PWD/packages -a source-highlighter=highlight.js _index.adoc; rm web-patterns-svelte5.html "
   },
   "workspaces": {
     "packages": [

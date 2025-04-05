@@ -5,7 +5,9 @@
 :email: marc@baldir.fr
 :orgname: Baldir
 
-// :examplesdir: $PWD/packages
+:examplesdir: packages
+:source-highlighter: highlight.js
+
 
 // === Table of Contents configuration
 // see: https://asciidoctor.org/docs/user-manual/#table-of-contents-summary
@@ -26,17 +28,25 @@
 :partnums:
 // End === Table of Contents configuration
 
+<<<
+
 include::docs/living-documentation.adoc[leveloffset=+1]
 
 include::docs/mermaid-diagram.adoc[leveloffset=+2]
 
 include::docs/approval-testing.adoc[leveloffset=+2]
 
+<<<
+
 include::docs/finite-state-machine.adoc[leveloffset=+1]
+
+<<<
 
 == Component library
 
 include::docs/object-table/object-table.adoc[leveloffset=+2]
+
+<<<
 
 == Nodejs ecosystem
 
