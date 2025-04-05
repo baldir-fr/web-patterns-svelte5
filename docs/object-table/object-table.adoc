@@ -66,7 +66,7 @@ This will allow to use CSS cascade to overwrite CSS class of the components.
 
 A pro is I can use vanilla css style without the need of any preprocessor.
 
-Example in link:{examplesdir}/object-table/src/lib/ObjectTable.svelte[]
+Example in link:{examplesdir}/object-table/src/lib/ObjectTable.svelte[object-table/src/lib/ObjectTable.svelte]
 
 [source,html]
 ----
@@ -75,14 +75,14 @@ include::{examplesdir}/object-table/src/lib/ObjectTable.svelte[tag=global-style-
 
 Style can be then implemented is a plain css file.
 
-link:{examplesdir}/object-table/src/lib/object-table.css[]
+link:{examplesdir}/object-table/src/lib/object-table.css[object-table/src/lib/object-table.css]
 
 [source,css]
 ----
 include::{examplesdir}/object-table/src/lib/object-table.css[tag=classic-css-style]
 ----
 
-And imported in the link:{examplesdir}/object-table/src/routes/+page.svelte[]
+And imported in the link:{examplesdir}/object-table/src/routes/+page.svelte[object-table/src/routes/+page.svelte]
 
 [source,html]
 ----
