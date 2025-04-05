@@ -1,0 +1,10 @@
+---
+title: Signup
+---
+stateDiagram-v2
+  [*] --> Initiated
+  Initiated --> Pending: askEmailConfirmation
+  Pending --> Active: emailConfirmed
+  Active --> Closed: close
+  Pending --> Closed: emailConfirmationTimedOut
+  Closed --> [*]

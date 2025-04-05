@@ -1,0 +1,24 @@
+{
+	"name": "ts-fsm-demo",
+	"description": "Finite state machine demo",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"lint": "eslint .",
+		"test:unit": "vitest",
+		"test": "npm run test:unit -- --run"
+	},
+	"devDependencies": {
+		"@eslint/compat": "^1.2.5",
+		"@eslint/js": "^9.22.0",
+		"eslint": "^9.22.0",
+		"globals": "^16.0.0",
+		"typescript": "^5.0.0",
+		"typescript-eslint": "^8.26.0",
+		"typescript-fsm": "^1.5.3",
+		"vite": "^6.0.0",
+		"vitest": "^3.0.0",
+		"approvals": "^7.2.3"
+	}
+}
