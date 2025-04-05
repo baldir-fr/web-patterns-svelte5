@@ -2,7 +2,6 @@
 
 Full demo
 
-
 == Patterns
 
 - Npm workspaces : link:package.json[]
@@ -10,13 +9,17 @@ Full demo
 
 == TODO
 
-
 === Patterns
 
 - Webhook
 - Validation
-    - With Yup
+** With Yup
 - Internationalization
-    - With Paraglide
+** With Paraglide
 - Asynchronous multi-step signup
-    - Finite state machine  
+** Finite state machine
+- [x] Approval testing
+- [x] Finite state machine
+- Living documentation
+** Living Diagram
+*** [x] Finite state machine diagram generated from approval test
