@@ -53,11 +53,13 @@ describe('Signup state machine', () => {
         )
     })
 
+    // tag::living-diagram-approvals-mermaid[]
     it('Draws living documentation mermaid diagram', async () => {
         const stateMachine = new SignupFsm(Initiated, callbacks)
 
         const mermaidDiagram = stateMachine.toMermaid('Signup')
         verifyWithExtension('docs/diagrams', 'signup-fsm', mermaidDiagram, 'mermaid')
     })
+    // end::living-diagram-approvals-mermaid[]
 })
 

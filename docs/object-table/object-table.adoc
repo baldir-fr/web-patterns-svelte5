@@ -1,0 +1,92 @@
+= ObjectTable
+
+Render any object as a human readable table.
+
+== Installation
+
+[source,sh]
+----
+npm install svelte-object-table
+----
+
+Usage :
+
+[source,html]
+----
+<script lang="ts">
+import {ObjectTable} from "svelte-object-table";
+import  "svelte-object-table/object-table.css";
+// You can also use your own CSS (every css class is global)
+</script>
+
+<ObjectTable data={{"foo":"bar","baz":"moo"}}></ObjectTable>
+
+----
+
+== Purpose
+
+Quick visualization of data which structure is unknown.
+
+- Showcase how to publish a component library
+
+== Patterns used
+
+- Embrace the cascade (CSS)
+- Approval testing (snapshot)
+- Design system documentation (Storybook)
+- Eslint but no Prettier
+
+=== Publish component library
+
+Content in `src/lib` is published.
+
+It publishes files in `dist` folder.
+
+To simulate publication to npm :
+
+[source,sh]
+----
+npm publish --dry-run
+----
+
+To actually publish :
+
+[source,sh]
+----
+npm publish --dry-run
+----
+
+=== Embrace the cascade
+
+Even if it is not idiomatic to Svelte 5 and most Frontend frameworks, I will not use scoped style in this component library.
+
+It means I will not use `<style>` in Svelte components.
+
+This will allow to use CSS cascade to overwrite CSS class of the components.
+
+A pro is I can use vanilla css style without the need of any preprocessor.
+
+Example in link:{examplesdir}/object-table/src/lib/ObjectTable.svelte[]
+
+[source,html]
+----
+include::{examplesdir}/object-table/src/lib/ObjectTable.svelte[tag=global-style-in-svelte-component]
+----
+
+Style can be then implemented is a plain css file.
+
+link:{examplesdir}/object-table/src/lib/object-table.css[]
+
+[source,css]
+----
+include::{examplesdir}/object-table/src/lib/object-table.css[tag=classic-css-style]
+----
+
+And imported in the link:{examplesdir}/object-table/src/routes/+page.svelte[]
+
+[source,html]
+----
+include::{examplesdir}/object-table/src/routes/+page.svelte[tag=svelte-import-css]
+----
+
+

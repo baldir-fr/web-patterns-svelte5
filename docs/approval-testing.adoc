@@ -1,0 +1,64 @@
+= Approval testing
+
+https://approvaltests.com[Approval testing].
+
+https://github.com/approvals/Approvals.NodeJS[Implementation for nodejs]
+
+== Generate living diagrams with mermaid
+
+Approvals can generate text and [Mermaid Diagrams](mermaid-diagram.md) are text.
+So can generate living diagrams (link:living-documentation.adoc[Living Documentation]) with approvals.
+
+Usually approvals implementation can support custom file extension ().
+But unless it is pushed, https://github.com/approvals/Approvals.NodeJS/issues/112[it is not native yet in approvals for nodejs].
+
+While waiting for the evolution to be merged, you can use existing API to verify with custom file extensions.
+
+An example of such utility :
+
+
+[source,typescript]
+----
+include::{examplesdir}/ts-fsm-demo/src/test/test-approvals-utils.ts[]
+----
+
+Usage to generate a link:living-documentation.adoc[Living Diagram] in link:mermaid-diagram.adoc[mermaid].
+
+[source,typescript]
+----
+include::{examplesdir}/ts-fsm-demo/src/signup-fsm/signup-fsm.spec.ts[tag=living-diagram-approvals-mermaid]
+----
+
+
+Will generate and verify against files :
+- `docs/diagrams/signup-fsm.approved.mermaid`
+- `docs/diagrams/signup-fsm.received.mermaid`
+
+== Configuration override
+
+`~/.approvalsConfig`
+
+[source,json]
+----
+{
+  "reporters": [
+    "BeyondCompare",
+    "diffmerge",
+    "p4merge",
+    "tortoisemerge",
+    "nodediff",
+    "opendiff",
+    "gitdiff"
+  ],
+  "normalizeLineEndingsTo": false,
+  "failOnLineEndingDifferences": false,
+  "appendEOL": true,
+  "errorOnStaleApprovedFiles": true,
+  "stripBOM": false,
+  "forceApproveAll": false,
+  "blockUntilReporterExits": false,
+  "maxLaunches": 10
+}
+
+
+----

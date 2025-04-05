@@ -1,20 +1,22 @@
-# npm workspaces
+= npm workspaces
 
 
 Run command in sub workspace from parent :
 
-```shell
+[source,shell]
+----
 npm run dev --workspace=full-demo
-```
+----
 
 
-## Configuration
+== Configuration
 
 Find all workspaces in `package` folder.
 
 In `package.json`
 
-```json
+[source,json]
+----
 {
   "workspaces": {
     "packages": [
@@ -22,14 +24,15 @@ In `package.json`
     ]
   }
 }
-```
+----
 
 Example of workspaces in `package` folder
 
-```json
+[source,json]
+----
 .
 └── packages
     ├── some-module
     └── full-demo
 
-```
+----

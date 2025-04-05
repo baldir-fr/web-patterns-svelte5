@@ -1,16 +1,18 @@
-# NVM
+= NVM
 
 Node version manager
 
 Use node version specified in a `.nvmrc` file
 
-```shell
+[source,shell]
+----
 nvm use
-```
+----
 
 Example of `.nvmrc` file for node version 22
 
-```
+[source]
+----
 22
-```
+----
 
