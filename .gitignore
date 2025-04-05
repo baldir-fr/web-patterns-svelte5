@@ -27,3 +27,6 @@ src/lib/paraglide
 
 # Jetbrains IDEs metadata
 .idea
+
+# Generated docs
+docs
